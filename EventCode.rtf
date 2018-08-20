@@ -27,6 +27,8 @@ End If\par
 \par
 If MainTable.Name = "\'d4\'b1\'b9\'a4\'d0\'c5\'cf\'a2" Then '\'c8\'e7\'b9\'fb\'d1\'a1\'d4\'f1\'b5\'c4\'d6\'f7\'b1\'ed\par
     Forms("\'c2\'bc\'c8\'eb").Open()\par
+   Else\par
+     Forms("\'c2\'bc\'c8\'eb").close()\par
 End If\par
 \par
 \cf1\'bc\'c6\'bb\'ae\'b9\'dc\'c0\'ed\par
@@ -106,6 +108,18 @@ End With\par
 \par
 \cf3 Tables("\'d4\'b1\'b9\'a4\'d0\'c5\'cf\'a2").Current.Delete\par
 \par
+\cf2\'c2\'bc\'c8\'eb_Button6_Click\par
+\par
+\cf3 With e.Form.Controls("TextBox10")\par
+       If .Value   IsNot   Nothing   Then\par
+        Tables("\'d4\'b1\'b9\'a4\'d0\'c5\'cf\'a2").Filter = "\'d0\'d5\'c3\'fb like '%" & .Value &   "%'or \'b5\'a5\'ce\'bb like '%" & .Value &   "%' "       \par
+      End   If\par
+  End   With\par
+\par
+\cf2\'c2\'bc\'c8\'eb_Button7_Click\par
+\par
+\cf3 Tables("\'d4\'b1\'b9\'a4\'d0\'c5\'cf\'a2").Filter = ""\par
+\par
 \cf1\'d7\'d4\'b6\'a8\'d2\'e5\'ba\'af\'ca\'fd\par
 \par
 \'c8\'ab\'be\'d6\'b4\'fa\'c2\'eb\par
@@ -128,7 +142,9 @@ End With\par
     r2("\'b9\'ab\'bb\'fd\'bd\'f0\'bd\'f0\'b6\'ee")=r1("\'b9\'ab\'bb\'fd\'bd\'f0\'bd\'f0\'b6\'ee")\par
 Next\par
 output.show(Tables("\'d2\'b5\'ce\'f1\'b4\'a6\'c0\'ed").Rows.count)\par
-messagebox.show("\'b1\'be\'b4\'ce\'b1\'b8\'b0\'b8\'b4\'e6\'b5\'b5\'bc\'c7\'c2\'bc: " & (Tables("\'d2\'b5\'ce\'f1\'b4\'a6\'c0\'ed").rows.count) & " \'cc\'f5,   \'bc\'b4\'bd\'ab\'b4\'f2\'d3\'a1\'ca\'e4\'b3\'f6")\par
+messagebox.show("\'b1\'be\'b4\'ce\'b4\'e6\'b5\'b5\'bc\'c7\'c2\'bc: " & (Tables("\'d2\'b5\'ce\'f1\'b4\'a6\'c0\'ed").rows.count) & " \'cc\'f5,   \'bc\'b4\'bd\'ab\'b4\'f2\'d3\'a1\'ca\'e4\'b3\'f6")\par
+\par
+\par
 \par
 \par
 \par
@@ -139,6 +155,16 @@ Book.Save(fl) '\'b1\'a3\'b4\'e6\'b9\'a4\'d7\'f7\'b2\'be\par
 Dim Proc As New Process '\'b4\'f2\'bf\'aa\'b9\'a4\'d7\'f7\'b2\'be\par
 Proc.File = fl\par
 Proc.Start()\par
+\par
+\par
+System.Threading.Thread.sleep(3000)\par
+\par
+\par
+Dim Result As DialogResult\par
+Result = MessageBox.Show("\'d2\'b5\'ce\'f1\'b4\'a6\'c0\'ed\'b2\'dd\'b8\'e5\'bd\'ab\'d2\'aa\'c7\'e5\'bf\'d5!\'bf\'c9\'d4\'da\'d2\'b5\'ce\'f1\'bc\'c7\'c2\'bc\'c0\'ef\'b2\'e9\'d1\'af", "\'cc\'e1\'ca\'be", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)\par
+If Result = DialogResult.Yes Then\par
+    DataTables("\'d2\'b5\'ce\'f1\'b4\'a6\'c0\'ed").DeleteFor("")\par
+End If\par
 \par
 \cf2\'d0\'c5\'cf\'a2\'ce\'ac\'bb\'a4_\'d2\'b5\'ce\'f1\'b4\'a6\'c0\'ed_\'c9\'be\'b3\'fd\'b1\'e4\'b6\'af_Click\par
 \par
